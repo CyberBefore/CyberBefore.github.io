@@ -20,7 +20,7 @@ body, html {
     position: absolute;
     background-color: lightblue; /* Rounded square is light blue */
     border-radius: 15px; /* Rounded corners */
-    padding: 20px 40px; /* Adjust padding for size */
+    padding: 40px 80px; /* Adjusted padding for taller box */
     display: flex;
     justify-content: center;
     align-items: center;
