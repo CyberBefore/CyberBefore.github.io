@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const container = document.getElementById('container');
-    let previousDot = createDot(randomPosition(), randomPosition());
+    const dots = [];
     let colors = ["red", "green", "blue", "orange", "purple"];
 
     function randomPosition() {
@@ -41,7 +41,17 @@ document.addEventListener("DOMContentLoaded", function() {
         const yPercent = (event.clientY / window.innerHeight) * 100;
 
         const newDot = createDot(xPercent, yPercent, colors[Math.floor(Math.random() * colors.length)]);
-        createLine(previousDot, newDot);
-        previousDot = newDot;
+        dots.push(newDot);
+
+        // Draw lines between the new dot and all previous dots
+        dots.forEach(dot => {
+            if (dot !== newDot) {
+                createLine(dot, newDot);
+            }
+        });
     });
+
+    // Place the initial dot at a random location
+    const initialDot = createDot(randomPosition(), randomPosition());
+    dots.push(initialDot);
 });
