@@ -19,7 +19,7 @@ body, html {
 #dvd {
     position: absolute;
     background-color: lightblue; /* Rounded square is light blue */
-    border-radius: 15px; /* Rounded corners */
+    border-radius: 35px; /* Rounded corners */
     padding: 80px 80px; /* Adjusted padding for taller box */
     display: flex;
     justify-content: center;
