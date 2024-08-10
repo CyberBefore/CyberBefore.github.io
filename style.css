@@ -3,9 +3,11 @@ body, html {
     padding: 0;
     width: 100%;
     height: 100%;
+    background-color: black; /* Background is black */
     overflow: hidden;
-    position: relative;
-    background-color: navy; /* Updated background color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #container {
@@ -14,17 +16,20 @@ body, html {
     height: 100%;
 }
 
-.dot {
+#dvd {
     position: absolute;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: lightblue;
+    background-color: lightblue; /* Rounded square is light blue */
+    border-radius: 15px; /* Rounded corners */
+    padding: 20px 40px; /* Adjust padding for size */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.line {
-    position: absolute;
-    width: 2px;
-    background-color: lightblue;
-    transform-origin: top left;
+#text {
+    color: white; /* Text is white */
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    user-select: none;
 }
