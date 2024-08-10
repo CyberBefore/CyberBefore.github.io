@@ -7,33 +7,45 @@ document.addEventListener("DOMContentLoaded", function() {
     let yVelocity = 2;
 
     function moveDVD() {
-        const rect = dvdElement.getBoundingClientRect();
+        // Get the position and dimensions of the DVD and the container
+        const dvdRect = dvdElement.getBoundingClientRect();
         const containerRect = container.getBoundingClientRect();
 
+        // Calculate new position
+        let newLeft = dvdRect.left + xVelocity;
+        let newTop = dvdRect.top + yVelocity;
+
         // Check for collision with container edges
-        if (rect.left <= 0 || rect.right >= containerRect.width) {
-            xVelocity *= -1;
+        if (newLeft <= 0 || newLeft + dvdRect.width >= containerRect.width) {
+            xVelocity *= -1; // Reverse X direction
+            newLeft = dvdRect.left + xVelocity; // Recalculate new position after collision
         }
-        if (rect.top <= 0 || rect.bottom >= containerRect.height) {
-            yVelocity *= -1;
+        if (newTop <= 0 || newTop + dvdRect.height >= containerRect.height) {
+            yVelocity *= -1; // Reverse Y direction
+            newTop = dvdRect.top + yVelocity; // Recalculate new position after collision
         }
 
         // Check for perfect corner hit
         if (
-            (rect.left <= 0 && rect.top <= 0) ||
-            (rect.right >= containerRect.width && rect.top <= 0) ||
-            (rect.left <= 0 && rect.bottom >= containerRect.height) ||
-            (rect.right >= containerRect.width && rect.bottom >= containerRect.height)
+            (newLeft <= 0 && newTop <= 0) || // Top-left corner
+            (newLeft + dvdRect.width >= containerRect.width && newTop <= 0) || // Top-right corner
+            (newLeft <= 0 && newTop + dvdRect.height >= containerRect.height) || // Bottom-left corner
+            (newLeft + dvdRect.width >= containerRect.width && newTop + dvdRect.height >= containerRect.height) // Bottom-right corner
         ) {
             textElement.style.color = colors[Math.floor(Math.random() * colors.length)];
         }
 
-        // Move the DVD element
-        dvdElement.style.left = rect.left + xVelocity + 'px';
-        dvdElement.style.top = rect.top + yVelocity + 'px';
+        // Apply the new position
+        dvdElement.style.left = newLeft + 'px';
+        dvdElement.style.top = newTop + 'px';
 
+        // Request the next frame
         requestAnimationFrame(moveDVD);
     }
+
+    // Initial positioning to avoid overflow
+    dvdElement.style.left = '0px';
+    dvdElement.style.top = '0px';
 
     // Start the movement
     moveDVD();
