@@ -5,7 +5,7 @@ body, html {
     height: 100%;
     overflow: hidden;
     position: relative;
-    background-color: #f0f0f0;
+    background-color: navy; /* Updated background color */
 }
 
 #container {
